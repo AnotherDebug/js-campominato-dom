@@ -42,25 +42,30 @@ let levelGame;
 
 //2. b.
 const levels = [100, 81, 49];
-const bombe = [];
+let bombe = [];
 
 start();
 reset();
+
+
+
 
 function init() {
   levelGame = levelGameRef.value;
   console.log(levelGame);
   for (let i = 0; i < levels[levelGame]; i++) {
     const square = createSquare(i);
-
     containerRef.append(square);
-
     square.addEventListener("click", function () {
       this.classList.toggle("active");
       console.log(this);
       console.log(this._index);
-      if (this._index === bombe[c]) {
-console.log('hai perso');
+
+    //   if (this._index === bombe.includes(levels[levelGame])) {
+    //     console.log('hai perso');
+    //   };
+      if (bombe.includes(this._index)) {
+        console.log('hai perso');
       };
     });
   }
@@ -71,7 +76,13 @@ console.log('hai perso');
     bombe.push(randomizer(0, levels[levelGame]));
   }
   console.log(bombe);
+
+  bombe = [];
+
 }
+
+
+
 
 function createSquare(index) {
   const newSquare = document.createElement("div");
@@ -81,6 +92,9 @@ function createSquare(index) {
   return newSquare;
 }
 
+
+
+
 function reset() {
   const btnResetRef = document.getElementById("btnReset");
   btnResetRef.addEventListener("click", function () {
@@ -88,6 +102,9 @@ function reset() {
   });
   return btnResetRef;
 }
+
+
+
 
 function start() {
   const btnStartRef = document.getElementById("btnStart");
@@ -97,6 +114,9 @@ function start() {
   });
   return btnStartRef;
 }
+
+
+
 
 /**
  *
