@@ -28,6 +28,11 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
    d. Il valore della select lo prendo dalla funzione init;
    c. Nalla funzione createSquare aggiungo la classe corrispondente;
    d. La funzione init richiama createSquare che crea dinamicamente i div;
+3. Creo 16 numeri random che saranno le bombe;
+   a. Creo una array vuoto che conterrà i 16 numeri randomici che utilizzo come indice per la griglia di gioco a cui applicherò una classe per le bombe;
+   b. Creo una funzione random;
+   c. Utilizzo un ciclo do while che cicla il valore tra 0 e l'array levels, per 16 volte quante sono le bombe;
+   d. Pusho tutto nell'array vuoto;
 */
 
 
