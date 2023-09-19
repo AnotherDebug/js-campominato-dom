@@ -60,9 +60,13 @@
    padding-top: 150px;
 }
 
-.buttons {
+.topGame {
+   display: flex;
+   align-items: center;
    margin-bottom: 50px;
 }
+
+
 
 .container {
    flex-wrap: wrap;
