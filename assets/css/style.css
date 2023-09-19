@@ -80,6 +80,10 @@
    aspect-ratio: 1/1;
 }
 
+.square.bomb {
+   background-color: rgb(139, 14, 0);
+}
+
 .square100 {
    width: calc(100% / 10);
 }
