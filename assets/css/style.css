@@ -95,3 +95,7 @@
 .square.active {
    background-color: rgb(0, 104, 139);
 }
+
+.message {
+   text-align: center;
+}
