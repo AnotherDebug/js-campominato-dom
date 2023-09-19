@@ -78,7 +78,8 @@ function init() {
       };
       if (bombe.includes(this._index)) {
         console.log("hai perso");
-        containerRef.innerHTML = "";
+        this.classList.remove("active");
+        this.classList.add("bomb");
         messageRef.innerHTML = "Hai perso!!";
       }
     });
