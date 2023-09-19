@@ -31,71 +31,78 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 3. Creo 16 numeri random che saranno le bombe;
    a. Creo una array vuoto che conterrà i 16 numeri randomici che utilizzo come indice per la griglia di gioco a cui applicherò una classe per le bombe;
    b. Creo una funzione random;
-   c. Utilizzo un ciclo do while che cicla il valore tra 0 e l'array levels, per 16 volte quante sono le bombe;
+   c. Utilizzo un ciclo while che cicla il valore tra 0 e l'array levels, per 16 volte quante sono le bombe;
    d. Pusho tutto nell'array vuoto;
 */
 
-
-
-const containerRef = document.querySelector('.container');
+const containerRef = document.querySelector(".container");
 //2. a.
-const levelGameRef = document.getElementById('levelGame');
+const levelGameRef = document.getElementById("levelGame");
 let levelGame;
 
 //2. b.
 const levels = [100, 81, 49];
+const bombe = [];
 
 start();
 reset();
 
+function init() {
+  levelGame = levelGameRef.value;
+  console.log(levelGame);
+  for (let i = 0; i < levels[levelGame]; i++) {
+    const square = createSquare(i);
 
+    containerRef.append(square);
 
-function init () {
-    levelGame = levelGameRef.value;
-    console.log(levelGame);
-    for (let i = 0; i < levels[levelGame]; i++) {
-     
-        const square = createSquare(i);
-      
-        containerRef.append(square);
-       
-        square.addEventListener ('click', function () {
-          
-            this.classList.toggle('active');
-            console.log(this);
-           
-            console.log(this._index);
-        });
-    
-    };
-};
+    square.addEventListener("click", function () {
+      this.classList.toggle("active");
+      console.log(this);
 
-
-function createSquare (index) {
-    const newSquare = document.createElement('div');
-    newSquare.className = 'square';
-    newSquare.classList.add('square' + levels[levelGame]);
-    newSquare._index = index;
-    return newSquare;
-};
-
-
-function reset () {
-   
-    const btnResetRef = document.getElementById('btnReset');
-    btnResetRef.addEventListener('click', function() {
-        containerRef.innerHTML = '';
+      console.log(this._index);
     });
-    return btnResetRef;
-};
+  }
 
+  let c = 0;
+  while (bombe.length < 16) {
+    c++;
+    bombe.push(randomizer(0, levels[levelGame]));
+  }
 
-function start () {
-  
-    const btnStartRef = document.getElementById('btnStart');
-    btnStartRef.addEventListener ('click', function() {
-        containerRef.innerHTML = '';
-        init();
-    });
-    return btnStartRef;
-};
+  console.log(bombe);
+}
+
+function createSquare(index) {
+  const newSquare = document.createElement("div");
+  newSquare.className = "square";
+  newSquare.classList.add("square" + levels[levelGame]);
+  newSquare._index = index;
+  return newSquare;
+}
+
+function reset() {
+  const btnResetRef = document.getElementById("btnReset");
+  btnResetRef.addEventListener("click", function () {
+    containerRef.innerHTML = "";
+  });
+  return btnResetRef;
+}
+
+function start() {
+  const btnStartRef = document.getElementById("btnStart");
+  btnStartRef.addEventListener("click", function () {
+    containerRef.innerHTML = "";
+    init();
+  });
+  return btnStartRef;
+}
+
+/**
+ *
+ * @param {number} min
+ * @param {number} max
+ * @returns
+ */
+function randomizer(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
