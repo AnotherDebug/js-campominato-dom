@@ -34,11 +34,12 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
    c. Utilizzo un ciclo while che cicla il valore tra 0 e l'array levels, per 16 volte quante sono le bombe;
    d. Pusho tutto nell'array vuoto;
    e. Faccio un controllo e verifico che i numeri non si ripetano;
+   f. Creo una funzione che controlla se ci sono bombe duplicate;
    f. Se il valore dell'indice della griglia è presente all'interno dell'array bombe viene cambiata la classe active con bomb e il gioco si arresta;
 */
 
 const containerRef = document.querySelector(".container");
-const messageRef = document.getElementById('message');
+const messageRef = document.getElementById("message");
 //2. a.
 const levelGameRef = document.getElementById("levelGame");
 let levelGame;
@@ -49,9 +50,6 @@ let bombe = [];
 
 start();
 reset();
-
-
-
 
 function init() {
   levelGame = levelGameRef.value;
@@ -64,14 +62,25 @@ function init() {
       console.log(this);
       console.log(this._index);
 
-    //   if (this._index === bombe.includes(levels[levelGame])) {
-    //     console.log('hai perso');
-    //   };
+      //   if (this._index === bombe.includes(levels[levelGame])) {
+      //     console.log('hai perso');
+      //   };
+
+    const listBomb = controlBomb(bombe);
+      if(listBomb === bombe) {
+    
+      }else{
+        let c = 0;
+        while (bombe.length < 16) {
+          c++;
+          bombe.push(randomizer(0, levels[levelGame]));
+        }
+      };
       if (bombe.includes(this._index)) {
-        console.log('hai perso');
+        console.log("hai perso");
         containerRef.innerHTML = "";
         messageRef.innerHTML = "Hai perso!!";
-      };
+      }
     });
   }
 
@@ -81,13 +90,7 @@ function init() {
     bombe.push(randomizer(0, levels[levelGame]));
   }
   console.log(bombe);
-
- 
-
 }
-
-
-
 
 function createSquare(index) {
   const newSquare = document.createElement("div");
@@ -96,9 +99,6 @@ function createSquare(index) {
   newSquare._index = index;
   return newSquare;
 }
-
-
-
 
 function reset() {
   const btnResetRef = document.getElementById("btnReset");
@@ -110,9 +110,6 @@ function reset() {
   return btnResetRef;
 }
 
-
-
-
 function start() {
   const btnStartRef = document.getElementById("btnStart");
   btnStartRef.addEventListener("click", function () {
@@ -122,9 +119,6 @@ function start() {
   return btnStartRef;
 }
 
-
-
-
 /**
  *
  * @param {number} min
@@ -133,4 +127,11 @@ function start() {
  */
 function randomizer(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function controlBomb(array) {
+  let controlBomb = [];
+  for (let i = 0; i < array.length; i++)
+    if (controlBomb.indexOf(array[i]) === -1) controlBomb.push(array[i]);
+  return controlBomb;
 }
