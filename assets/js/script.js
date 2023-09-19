@@ -21,20 +21,30 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 =======================================================================================
 
 1. Creo una select dove scegliere i vari livelli di difficoltà (facile, medio, difficile);
-2. Assegno alle opzioni dei valori che verranno poi letti per passare da un livello ad un altro;
+2. Assegno alle opzioni dei valori numerici che verranno poi richiamati e letti per passare da un livello ad un altro;
+   a. Salvo in una costante il riferimento della select;
+   b. Creo un array con valori numerici corrispondenti all'indice della select ed alle classi che dovranno essere richiamate per contenere il giusto numero di square;
+   c. Nalla funzione createSquare aggiungo la classe corrispondente;
+   d. La funzione init richiama createSquare che crea dinamicamente i div;
 */
 
 
 
 const containerRef = document.querySelector('.container');
+//2. a.
+const levelGameRef = document.getElementById('levelGame');
+const levelGame = levelGameRef.value;
+console.log(levelGame);
+//2. b.
+const levels = [100, 81, 49];
 
 start();
 reset();
 
 
 
-function init (n) {
-    for (let i = 0; i < n; i++) {
+function init () {
+    for (let i = 0; i < levels[levelGame]; i++) {
      
         const square = createSquare(i);
       
@@ -55,7 +65,8 @@ function init (n) {
 function createSquare (index) {
     const newSquare = document.createElement('div');
     newSquare.className = 'square';
-  
+    newSquare.classList.add('square'+levels[levelGame]) ;
+    console.log('square'+levels[levelGame]);
     newSquare._index = index;
     return newSquare;
 };
@@ -76,7 +87,7 @@ function start () {
     const btnStartRef = document.getElementById('btnStart');
     btnStartRef.addEventListener ('click', function() {
         containerRef.innerHTML = '';
-        init(100);
+        init();
     });
     return btnStartRef;
 };
