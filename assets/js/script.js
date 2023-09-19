@@ -33,9 +33,12 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
    b. Creo una funzione random;
    c. Utilizzo un ciclo while che cicla il valore tra 0 e l'array levels, per 16 volte quante sono le bombe;
    d. Pusho tutto nell'array vuoto;
+   e. Faccio un controllo e verifico che i numeri non si ripetano;
+   f. Se il valore dell'indice della griglia è presente all'interno dell'array bombe viene cambiata la classe active con bomb e il gioco si arresta;
 */
 
 const containerRef = document.querySelector(".container");
+const messageRef = document.getElementById('message');
 //2. a.
 const levelGameRef = document.getElementById("levelGame");
 let levelGame;
@@ -66,6 +69,8 @@ function init() {
     //   };
       if (bombe.includes(this._index)) {
         console.log('hai perso');
+        containerRef.innerHTML = "";
+        messageRef.innerHTML = "Hai perso!!";
       };
     });
   }
@@ -99,6 +104,7 @@ function reset() {
   const btnResetRef = document.getElementById("btnReset");
   btnResetRef.addEventListener("click", function () {
     containerRef.innerHTML = "";
+    messageRef.innerHTML = "";
     bombe = [];
   });
   return btnResetRef;
