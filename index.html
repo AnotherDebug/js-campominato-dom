@@ -10,10 +10,25 @@
     
         <div class="containerWrapper d-flex">
 
-            <div class="buttons">
-                <button id="btnStart" class="btn start">Start</button>
-                <button id="btnReset" class="btn reset">Reset</button>
+            <div class="topGame">
+
+                <div class="levelGame">
+                    <label for="age" class="form-label">Livello di difficoltà:</label>
+                    <select id="userAge" class="form-select" title = "levelGame">
+                        <option selected disabled value="">Scegli un livello</option>
+                        <option value="0">Facile</option>
+                        <option value="1">Medio</option>
+                        <option value="2">Difficile</option>
+                    </select>
+                </div>
+
+                <div class="buttons">
+                    <button id="btnStart" class="btn start">Start</button>
+                    <button id="btnReset" class="btn reset">Reset</button>
+                </div>
             </div>
+
+           
 
             <div class="container d-flex">
 
