@@ -58,8 +58,10 @@ function init() {
     square.addEventListener("click", function () {
       this.classList.toggle("active");
       console.log(this);
-
       console.log(this._index);
+      if (this._index === bombe[c]) {
+console.log('hai perso');
+      };
     });
   }
 
@@ -68,7 +70,6 @@ function init() {
     c++;
     bombe.push(randomizer(0, levels[levelGame]));
   }
-
   console.log(bombe);
 }
 
