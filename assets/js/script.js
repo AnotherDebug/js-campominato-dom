@@ -33,8 +33,8 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 const containerRef = document.querySelector('.container');
 //2. a.
 const levelGameRef = document.getElementById('levelGame');
-const levelGame = levelGameRef.value;
-console.log(levelGame);
+let levelGame;
+
 //2. b.
 const levels = [100, 81, 49];
 
@@ -44,6 +44,8 @@ reset();
 
 
 function init () {
+    levelGame = levelGameRef.value;
+    console.log(levelGame);
     for (let i = 0; i < levels[levelGame]; i++) {
      
         const square = createSquare(i);
@@ -65,8 +67,7 @@ function init () {
 function createSquare (index) {
     const newSquare = document.createElement('div');
     newSquare.className = 'square';
-    newSquare.classList.add('square'+levels[levelGame]) ;
-    console.log('square'+levels[levelGame]);
+    newSquare.classList.add('square' + levels[levelGame]);
     newSquare._index = index;
     return newSquare;
 };
