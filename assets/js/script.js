@@ -77,7 +77,7 @@ function init() {
   }
   console.log(bombe);
 
-  bombe = [];
+ 
 
 }
 
@@ -99,6 +99,7 @@ function reset() {
   const btnResetRef = document.getElementById("btnReset");
   btnResetRef.addEventListener("click", function () {
     containerRef.innerHTML = "";
+    bombe = [];
   });
   return btnResetRef;
 }
