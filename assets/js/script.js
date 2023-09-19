@@ -24,6 +24,8 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 2. Assegno alle opzioni dei valori numerici che verranno poi richiamati e letti per passare da un livello ad un altro;
    a. Salvo in una costante il riferimento della select;
    b. Creo un array con valori numerici corrispondenti all'indice della select ed alle classi che dovranno essere richiamate per contenere il giusto numero di square;
+   c. Dichiaro una variabile globale dove salvo il valore della select;
+   d. Il valore della select lo prendo dalla funzione init;
    c. Nalla funzione createSquare aggiungo la classe corrispondente;
    d. La funzione init richiama createSquare che crea dinamicamente i div;
 */
