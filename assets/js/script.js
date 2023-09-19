@@ -35,7 +35,9 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
    d. Pusho tutto nell'array vuoto;
    e. Faccio un controllo e verifico che i numeri non si ripetano;
    f. Creo una funzione che controlla se ci sono bombe duplicate;
-   f. Se il valore dell'indice della griglia è presente all'interno dell'array bombe viene cambiata la classe active con bomb e il gioco si arresta;
+   g. Se il valore dell'indice della griglia è presente all'interno dell'array bombe viene cambiata la classe active con bomb e il gioco si arresta;
+   h. Rimuovo l'evento al click per non ripetere l'output del valore;
+
 */
 
 const containerRef = document.querySelector(".container");
@@ -57,32 +59,7 @@ function init() {
   for (let i = 0; i < levels[levelGame]; i++) {
     const square = createSquare(i);
     containerRef.append(square);
-    square.addEventListener("click", function () {
-      this.classList.toggle("active");
-      console.log(this);
-      console.log(this._index);
-
-      //   if (this._index === bombe.includes(levels[levelGame])) {
-      //     console.log('hai perso');
-      //   };
-
-    const listBomb = controlBomb(bombe);
-      if(listBomb === bombe) {
-    
-      }else{
-        let c = 0;
-        while (bombe.length < 16) {
-          c++;
-          bombe.push(randomizer(0, levels[levelGame]));
-        }
-      };
-      if (bombe.includes(this._index)) {
-        console.log("hai perso");
-        this.classList.remove("active");
-        this.classList.add("bomb");
-        messageRef.innerHTML = "Hai perso!!";
-      }
-    });
+    square.addEventListener("click", clicked);
   }
 
   let c = 0;
@@ -135,4 +112,31 @@ function controlBomb(array) {
   for (let i = 0; i < array.length; i++)
     if (controlBomb.indexOf(array[i]) === -1) controlBomb.push(array[i]);
   return controlBomb;
+}
+
+function clicked() {
+  this.classList.toggle("active");
+  console.log(this);
+  console.log(this._index);
+
+  //   if (this._index === bombe.includes(levels[levelGame])) {
+  //     console.log('hai perso');
+  //   };
+
+  const listBomb = controlBomb(bombe);
+  if (listBomb !== bombe) {
+    let c = 0;
+    while (bombe.length < 16) {
+      c++;
+      bombe.push(randomizer(0, levels[levelGame]));
+    }
+   
+  }
+  if (bombe.includes(this._index)) {
+    console.log("hai perso");
+    this.classList.remove("active");
+    this.classList.add("bomb");
+    messageRef.innerHTML = "Hai perso!!";
+  }
+  this.removeEventListener("click", clicked);
 }
